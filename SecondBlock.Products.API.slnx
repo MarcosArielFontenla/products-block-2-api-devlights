@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SecondBlock.Products.API/SecondBlock.Products.API.csproj" />
+    <Project Path="src/SecondBlock.Products.Business/SecondBlock.Products.Business.csproj" />
+    <Project Path="src/SecondBlock.Products.DataAccess/SecondBlock.Products.DataAccess.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/SecondBlock.Products.API.UnitTests/SecondBlock.Products.API.UnitTests.csproj" />
+    <Project Path="tests/SecondBlock.Products.Business.UnitTests/SecondBlock.Products.Business.UnitTests.csproj" />
+    <Project Path="tests/SecondBlock.Products.DataAccess.UnitTests/SecondBlock.Products.DataAccess.UnitTests.csproj" />
+  </Folder>
+</Solution>

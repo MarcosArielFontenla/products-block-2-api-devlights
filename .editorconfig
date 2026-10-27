@@ -1,0 +1,9 @@
+root = true
+
+[*.cs]
+csharp_style_prefer_primary_constructors = false:suggestion
+csharp_style_expression_bodied_constructors = false:suggestion
+csharp_style_expression_bodied_methods = false:suggestion
+csharp_style_expression_bodied_local_functions = false:suggestion
+dotnet_style_prefer_conditional_expression_over_return = false:suggestion
+dotnet_style_prefer_conditional_expression_over_assignment = false:suggestion

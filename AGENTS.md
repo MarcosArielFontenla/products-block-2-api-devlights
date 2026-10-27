@@ -1,0 +1,22 @@
+# Convenciones del repositorio
+
+- Ubicar todos los proyectos de producción, incluida la Web API y cualquier nueva biblioteca o capa, dentro de `src/<ProjectName>/`.
+- Ubicar todos los proyectos de tests unitarios dentro de `tests/<ProjectName>.UnitTests/` y usar xUnit.
+- Mantener `SecondBlock.Products.API.slnx` en la raíz y agregar cada proyecto a la carpeta de solución `src` o `tests`, según corresponda. Las carpetas de solución deben coincidir con las carpetas físicas.
+- Cada proyecto de tests debe referenciar los proyectos de producción que prueba.
+- Conservar .NET 10 salvo que la consigna o el usuario indiquen un cambio.
+- No agregar pruebas vacías o ficticias para simular cobertura. Incorporar pruebas de comportamiento cuando se implemente la consigna.
+- Usar inglés para los nombres de archivos, clases, interfaces, métodos, propiedades, variables y tests, así como para comentarios, mensajes de validación y ejemplos de código. Mantener la documentación del proyecto en español.
+- Usar `PascalCase` para tipos y miembros públicos, `I` para interfaces, `Dto` para DTOs, `camelCase` para variables y parámetros, `_camelCase` para campos privados de instancia y `s_camelCase` para campos privados estáticos.
+- Cada archivo C# debe llamarse como su tipo principal. Nombrar las pruebas con el patrón `Method_Scenario_ExpectedBehavior`.
+- Usar `GetAll`, `GetById`, `Create`, `Update` y `Delete` para las operaciones CRUD. Usar `Name`, `Price`, `Category` e `IsActive` para los datos del producto, con su serialización JSON habitual en `camelCase`.
+- `GetAll()` debe devolver `List<Product>` en el repositorio y `List<ProductDto>` en el servicio, manteniendo coherencia en interfaces, implementaciones, dobles de prueba y metadatos de respuesta HTTP. El repositorio devuelve una lista independiente mediante `ToList()` y maneja las entidades por referencia. El servicio construye la lista de DTOs con `foreach` y `Add`.
+- Usar `/api/products` como ruta pública y mantener las rutas en inglés.
+- Usar constructores tradicionales explícitos cuando una clase tenga dependencias y asignarlas a campos `private readonly`. No usar constructores primarios. El repositorio actual administra directamente una lista estática privada y no necesita dependencias ni un constructor de DI. Mantener el servicio y repositorio registrados como `Scoped`.
+- Mantener el repositorio en memoria sencillo, con una lista estática privada, un contador de IDs y operaciones CRUD tradicionales. No incorporar sincronización ni clonación de entidades en esta implementación didáctica salvo que el usuario lo solicite.
+- Escribir métodos y constructores con cuerpos de bloque `{ }`, incluso si contienen una sola instrucción; no usar miembros con cuerpo de expresión (`=>`). Las lambdas para LINQ, predicados y callbacks siguen permitidas.
+- Mantener un estilo sencillo y tradicional en servicios, mappers y helpers: usar `if`, `foreach`, variables intermedias y asignaciones explícitas de propiedades. Evitar ternarios, cadenas LINQ y operadores de supresión de nulabilidad (`!`) en esa lógica. Comprobar nulos con `if` y lanzar las excepciones explícitamente.
+- Aplicar estas convenciones también a los tests y sus dobles de prueba. Mantener las preferencias de estilo correspondientes en `.editorconfig`.
+- Ubicar el mapeo entre entidades y DTOs en `Business/Mappers/`, con una clase estática específica por entidad. El servicio debe validar las entradas antes de llamar al mapper y coordinar las reglas de negocio. Las actualizaciones deben conservar los campos que no son editables mediante el DTO.
+- Ubicar los helpers según su responsabilidad y dependencias en su propia capa. Mantener la validación reutilizable de Data Annotations en `Business/Helpers/ValidationHelper.cs`. Crear utilidades comunes entre proyectos cuando exista una necesidad real y sin dependencias hacia las capas de la aplicación.
+- Crear los commits con el prefijo `feat:` seguido de una descripción breve en inglés, según la convención solicitada para este proyecto.

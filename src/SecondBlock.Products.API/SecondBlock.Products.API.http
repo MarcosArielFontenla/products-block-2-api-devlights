@@ -1,0 +1,46 @@
+@host = http://localhost:5184
+@productId = 1
+
+### List products
+GET {{host}}/api/products
+Accept: application/json
+
+### Create a product (201 and Location header)
+POST {{host}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Mechanical keyboard",
+  "price": 45000.50,
+  "category": "Peripherals"
+}
+
+### Get a product (set productId to the ID returned on creation)
+GET {{host}}/api/products/{{productId}}
+Accept: application/json
+
+### Update a product (204)
+PUT {{host}}/api/products/{{productId}}
+Content-Type: application/json
+
+{
+  "name": "Wireless keyboard",
+  "price": 52000,
+  "category": "Peripherals"
+}
+
+### Invalid data (400 with validation errors)
+POST {{host}}/api/products
+Content-Type: application/json
+
+{
+  "name": "AB",
+  "price": 0,
+  "category": ""
+}
+
+### Delete a product (204)
+DELETE {{host}}/api/products/{{productId}}
+
+### Get the deleted product (404)
+GET {{host}}/api/products/{{productId}}
